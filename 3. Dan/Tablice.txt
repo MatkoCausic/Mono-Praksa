@@ -1,0 +1,11 @@
+Create tables u PostgrasSQL-u, napraviti CRUD metode
+Create - InsertIntoTable
+Read - Select
+Update - Update
+Delete - Remove/Truncate
+
+Bitno kod CreateTable-a, koristiti foreign key-eve
+Nazivi za foregin key - FK_Tablica1(gdje se nalazi strani ključ)_Tablica2(strani ključ)_Kolona, 
+Primjer s ploče: "FK_VehicleModel_VehicleMake_MakeID"
+Trebamo staviti ime za constraint jer će se postaviti automatski constraint pa nećemo znati ime
+Selectove raditi s Joinovima (Join left,right,inner)

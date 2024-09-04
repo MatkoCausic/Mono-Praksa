@@ -1,0 +1,89 @@
+CREATE TABLE "Cinema"(
+"Id" uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+"Name" VARCHAR NOT NULL,
+"Address" VARCHAR NOT NULL,
+"PhoneNumber" VARCHAR
+);
+INSERT INTO "Cinema" ("Name","Address","PhoneNumber")
+VALUES
+	('Cinestar','Svilajska 31a, 31000 Osijek','+385 (0)31 324 314'),
+	('Urania','Šetalište kardinala Franje Šepera 8, 31000 Osijek','+385 (0)31 205 507'),
+	('Europa','Šetalište Petra Preradovića 2, 31000 Osijek','');
+SELECT * FROM "Cinema";
+
+CREATE TABLE "Hall"(
+"Id" uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+"CinemaId" uuid NOT NULL,
+"NumberOfSeats" INT NOT NULL,
+CONSTRAINT "FK_Hall_Cinema_CinemaId"
+	FOREIGN KEY("CinemaId")
+		REFERENCES "Cinema"("Id")
+);
+INSERT INTO "Hall" ("CinemaId","NumberOfSeats")
+VALUES
+	((SELECT "Id" FROM "Cinema" WHERE "Name"='Cinestar'),200),
+	((SELECT "Id" FROM "Cinema" WHERE "Name"='Cinestar'),200),
+	((SELECT "Id" FROM "Cinema" WHERE "Name"='Cinestar'),200),
+	((SELECT "Id" FROM "Cinema" WHERE "Name"='Urania'),300);
+SELECT * FROM "Hall";
+SELECT * FROM "Cinema";
+
+CREATE TABLE "Customer"(
+"Id" uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+"Name" VARCHAR
+);
+INSERT INTO "Customer" ("Name")
+VALUES
+	('Matko'),('Klara'),('Marija'),('Miroslav'),('Mirna'),('Robert');
+SELECT * FROM "Customer";
+
+
+CREATE TABLE "Movie"(
+"Id" uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+"Title" VARCHAR NOT NULL,
+"Duration" INTERVAL NOT NULL
+);
+
+CREATE TABLE "Projection"(
+"Id" uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+"ProjectionTime" TIMESTAMP NOT NULL,
+"MovieId" uuid NOT NULL,
+"HallId" uuid NOT NULL,
+CONSTRAINT "FK_Projection_Movie_MovieId"
+	FOREIGN KEY("MovieId")
+		REFERENCES "Movie"("Id"),
+CONSTRAINT "FK_Projection_Hall_HallId"
+	FOREIGN KEY("HallId")
+		REFERENCES "Hall"("Id")
+);
+
+CREATE TABLE "Ticket"(
+"Id" uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+"ProjectionId" uuid NOT NULL,
+"Price" DECIMAL(4,2) NOT NULL,
+"SeatNumber" INT NOT NULL,
+"CustomerId" uuid NOT NULL,
+CONSTRAINT "FK_Ticket_Projection_ProjectionId"
+	FOREIGN KEY("ProjectionId")
+		REFERENCES "Projection"("Id"),
+CONSTRAINT "FK_Ticket_Customer_CustomerId"
+	FOREIGN KEY("CustomerId")
+		REFERENCES "Customer"("Id")
+);
+
+CREATE TABLE "Genre"(
+"Id" uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+"Name" VARCHAR NOT NULL
+);
+
+CREATE TABLE "MovieGenre"(
+"MovieId" uuid NOT NULL,
+"GenreId" uuid NOT NULL,
+PRIMARY KEY ("MovieId","GenreId"),
+CONSTRAINT "FK_MovieGenre_Movie_MovieId"
+	FOREIGN KEY("MovieId")
+		REFERENCES "Movie"("Id"),
+CONSTRAINT "FK_MovieGenre_Genre_GenreId"
+	FOREIGN KEY("GenreId")
+		REFERENCES "Genre"("Id")
+);
