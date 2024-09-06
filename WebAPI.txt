@@ -57,7 +57,7 @@ parametri nakon / moraju postojati ili iskaču errori
 Parametri se šalju u url-u i mogu se poslati na dva načina
 Jedan je URL parametar, a drugi kao query parametar
 
-Get i Delete isto funkcioniraju
+Get i Delete isto funkcioniraju.
 
 Post - kada su u pitanju primitivni tipovi podataka, primitivne tipove podataka šaljemo kroz URL
 	- kada su kompleksni tipovi podataka šaljemo u query
@@ -67,4 +67,5 @@ Update metoda - imat će id i objekt
 Autorizacija je dio headera
 
 Napravit web api, 5 endpointa i da returnaju
-/testing za sourcetree
+/drugi testing za sourcetree
+
