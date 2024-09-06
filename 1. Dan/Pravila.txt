@@ -1,0 +1,31 @@
+Naming:
+PascalCase - klase (u jednini - People umjesto Person),metode,svojstva
+camelCase - privatne atribute (konvencija s donjom crticom npr.: _age),varijable unutar metoda
+
+Koliko god nebitna varijabla, dati konkretno ime
+
+Data types:
+-int,float,double
+-string,char
+-bool
+-void
+-DateTime,Date/Time - defaultna vrijednost jest neka konkretna godina, ne null
+-Guid (Generated unique identifier) - koristi se za primarne ključeve u bazi
+-? (nullable) - ako napišemo ? operator znači da smo ga pretvorili u nullable tip podatka
+
+string ima null vrijednost jer je reference value. Moram ih instancirati i imaju referencu
+Svi reference type je null, svi values imaju svoju vrijednost
+
+Interface - vrsta ugovora
+
+?? - null coales, ako je s lijeve strane rezultat null, vratit će s desne strane će vratiti definirani rezultat
+WorkDepartment?.Name??"No department" - slično short-hand if koji je ternarni operator gdje se stavlja upitnik i dvotočka
+Na prvom upitniku radimo odmah provjeravamo ako je rezultat null makar smo već definirali da je nullable, u suprotnom nam baca
+NullException()
+
+worker.DOB = DateTime.TryParse(Console.ReadLine(), out DateTime result) ? result : null;
+out je izlazna varijabla u što će on spremiti to što je Parso.
+TryParse vraća bool je li uspješno uspjelo parsanje.
+Result je dostupno izvan te funkcije.
+Ako je uspješno parsano, vraća result, ako nije null
+Dodati uvijek GitIgnore kad kreiramo repository
