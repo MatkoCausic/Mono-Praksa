@@ -67,3 +67,5 @@ Update metoda - imat će id i objekt
 Autorizacija je dio headera
 
 Napravit web api, 5 endpointa i da returnaju
+/drugi testing za sourcetree
+
