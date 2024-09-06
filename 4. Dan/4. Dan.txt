@@ -1,0 +1,140 @@
+Danas ćemo učiti čitati podatke iz tablica, ne iz čistih listi
+NpgSql
+Baza podataka je na jednom resursu, WebAPI na drugom
+
+1. connectionString - tekstualni podatak u kojem se nalaze svi podatci da bi se spojili na bazu
+Trebamo otvoriti konekciju nad bazom, izvršiti što želimo i zatvoriti konekciju
+Recimo da samo 10 ljudi može pristupiti toj bazi u isto vrijeme, to je konekcija
+Zatvaramo konekciju zbog drugih ljudi i oslobađanja resursa
+Klasa za korištenje iz paketa NpgsqlConnection - kreiramo objekt konekcije, koristi se za otvaranje i zatvaranje konekcije
+ConnectionString predajemo objektu da se zna na kojem se otvarat i zatvarat. Slat ćemo vrijednost preko konstruktora
+
+2. open - kada smo kreirali objekt, otvaramo konekciju, trebamo definirati što želimo napraviti
+Klasa za to je NpgsqlCommand. Prefiks Npgsql je da se zna da se koristi za Postgresql bazu
+
+3. command - napišemo query koji želimo izvršiti
+
+4. a) execute - izvršimo naredbu
+   b) reader - kada dobijemo output iz baze podataka, trebamo spremiti u kodu te podatke
+Dobivamo retke, reader ih čita redak po redak te ih trebamo spremiti negdje u kodu sukladno s formatom koji nam je predala baza
+podataka.
+
+5. close - zatvaramo
+
+'using' van biblioteka - koristi se za korištenje objekta u tom trenutku te kada završi taj trenutak se odmah disposa nakon korištenja
+Želimo odmah da se izvrši garbage collection zbog korištenja resursa
+
+Odvojiti connectionString od svega jer ćemo koristiti u svim metodama
+
+public ActionResult Post([FromBody] Employee employee)
+{
+	try
+	{
+		using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+		string commandText = $"INSERT INTO \"Employee\" VALUES( @id, @firstName, @lastName, @dob, @workDepartmentId);";
+		using var command = new NpgsqlCommand(commandText,connection);
+
+		command.Parameters.AddWithValue("@id",NpgsqlTypes.NpgsqlDbType.Uuid,Guid.NewGuid()); - overloading
+		command.Parameters.AddWithValue("@firstName", employee.FirstName); //NpgsqlTypes.NpgsqlDbType.Varchar
+		command.Parameters.AddWithValue("@lastName", employee.LastName);
+		command.Parameters.AddWithValue("@dob", employee.Dob);		//NpgsqlTypes.NpgsqlDbType.Timestamp
+		command.Parameters.AddWithValue("@workDepartmentId", NpgsqlTypes.NpgsqlDbType.Uuid, employee.WorkDepartment()); -overloading
+
+		connection.Open();
+
+		var numberOfCommits = command.ExecuteNonQuery();
+
+		connection.Close();
+		if(numberOfCommits == 0)
+			return NotFound(); //bolje BadRequest()
+		return Ok("Successfully added.");
+	}
+	catch(Exception ex)
+	{
+		return BadRequest(ex.Message);
+	}
+}
+
+[HttpDelete("{id}")]
+public ActionResult Delete(Guid id)
+{
+	try
+	{
+		using var connection = new NpgsqlConnection(connectionString);
+		var commandText = "DELETE FROM \"Employee\" WHERE \"Id\" = @id;";
+		using var command = new NpgsqlCommand(commandText, connection);
+
+		command-Parameters.AddWithValues("@id",id );
+		connection.Open();
+
+		var numberOfCommits = command.ExecuteNonQuery();
+
+		if(numberOfCommits == 0)
+			return NotFound();
+		return Ok("Deleted!");
+	}
+	catch(Exception ex) => return BadRequest(ex.Message);
+}
+
+[HttpGet("{id}")]
+public ActionResult Get(Guid id)
+{
+	try
+	{
+		//var employees = new List<Employee>();
+		var employee = new Employee();
+		using var connection = new NpgsqlConnection(connectionString);
+		var commandText = "SELECT * FROM \"Employee\" WHERE \"Id\" = @id;";
+		using var command = new NpgsqlCommand(commantText,connection);
+
+		command.Parameters.AddWithValue("@id",id);
+		connection.Open();
+		using NpgsqlDataReader reader = command.ExecuteReader();
+
+		if(reader.HasRows)
+		{
+			reader.Read();
+
+			employee.Id = Guid.Parse(reader[0].ToString());
+			employee.FirstName = reader[1].ToString();
+			employee.LastName = reader["LastName"].ToString();
+			employee.Dob = Convert.ToDateTime(reader[3]);
+			employee.WorkDepartmentId = Guid.TryParse(reader[4].ToString(),out var result) ? result : null;
+
+			//employees.Add(employee);
+		}
+		if(employee == null)
+		{
+			return NotFound();
+		}
+		return Ok(employee);
+	}
+	catch(Exception ex)
+	{
+		return BadRequest(ex.Message);
+	}
+}
+
+- šaljemo parametre da bi spriječili sqlInjection
+- spremno za izvršiti
+- ne radimo new Npgsqlreader nego zovemo naredbu command.ExecuteReader();
+
+krenuti s DELETE i POST
+
+
+Kada update-amo recimo naš profil, ne mijenjamo većinom vremena sve što se može promijeniti, nego editiramo sve podatke.
+Jedan način je da šaljemo sve podatke da se update-aju svi podatci makar bili neizmijenjeni.
+Drugi način je da šaljemo samo one promijenjene podatke i uspoređujemo sve podatke i mijenjamo po samo te koji su promijenjeni.
+
+[HttpPut("{id}")]
+public ActionResult Put(Guid id,[FromBody] Employee employee)
+{
+	try
+	{
+		using var connection = new NpgsqlConnection(connectionString);
+		var selectCommandText = "SELECT * FROM \"Employee\" WHERE \"Id\" = @id;";
+
+
+if(!string.IsNullOrWhiteSpace(employee.FirstName) && !currentEmployee.FirstName.Equals(employee.FristName,String
+{
+	sb.Append("\"FirstName\" =@firstName,");

@@ -1,0 +1,70 @@
+Kršenje svih mogućih dizajn principa.
+Svaka web app se nalazi na nekom serveru u svijetu, treba biti hostana kako bi svi koristili preko preglednika.
+Hostat ćemo preko lokalnog hosta danas.
+Local host možemo samo mi pristupiti sa svojeg računala makar druga osoba zna naš local host
+API - sučelje između dva programa ili programa i hardware-a koji omogućuje komunikaciju između dva programa.
+    - zid između frontend i backend dijela programa
+
+Server - local host
+Serveru šaljemo request, a server vraća response - HTTP protokol s kojim ćemo komunicirati
+Primjer requesta - odemo na google, upišemo nešto u tražilicu i google pretražuje server po tome što smo unijeli
+Primjer responsa - vraća listu linkova koji pašu našem traženom odnosu u tražilici
+Sve što kliknemo na chrome-u, znači da šaljemo request.
+
+CRUD - Create, Read, Update, Delete - vrste requestova
+read request -> GET
+delete request -> DELETE
+create request -> POST
+update request -> PUT
+
+Svaki request ima dva dijela - header i body
+
+Ovisno o tipu requesta, podatke ćemo stavljati u URL ili u body kad želimo poslati request na server
+Primitivni tipovi se najčešće šalju kroz URL (dohvaćamo recimo ime filma po nekom ID-u), kompleksni
+set podataka šaljemo kroz body.
+
+Unutar URL-a što god mi dodamo, to je isključivo get request.
+
+Imamo project name i solution name.
+Danas ćemo imati jedan projekt koji je web api.
+Solution je jedan, projekata mnogo.
+U project name dodajemo ono što projekt jest
+Project name: Introduction.WebAPI
+Solution name: Introduction
+
+MVC - Model View Controller
+Naš WebAPI ima Model i Controllere, nema view-ova, radi isključivo da ti vraća set podataka
+Controller klasa služi za prihvaćanje requestova i vraćanje responseva, da bi to mogla izvesti treba nasljediti
+određene klase koje joj to omogućuju (WeatherForecastController : ControllerBase)
+
+WeatherForecastController trenutačno ima jedan endpoint (samo jednu metodu get) te ćemo dodavati još endpointova
+[HttpGet(Name = "GetWeatherForecast")] - sve u uglatoj zagradi su atributi, set riječi koji pobliže objašnjava metodu,property,klasu
+"HttpGet" - govori nam da se radi o Get metodi
+Ime metode se mora matchati po imenu requesta
+Ako se ne matcha po imenu, ali su istog request tipa, data anotacija pomaže controlleru i programeru da lakše skontamo endpoint.
+Requestovi - 404
+Requestovi iz porodice 200 su dobri requestovi
+Requestovi iz porodice 300 su redirectovi
+Requestovi iz porodice 400 kada ne može se vratiti set podataka
+Requestovi iz porodice 500 su server errori koji nemaju veze s našim kodom (kod se resetira i dalje normalno funkcionira npr.)
+
+Postman: url - localhost/imeKontrolera
+parametri nakon ? su opcionalni
+https://localhost:7193/weatherforecast?firstName=Pero&lastName=Peric
+
+parametri nakon / moraju postojati ili iskaču errori
+
+Parametri se šalju u url-u i mogu se poslati na dva načina
+Jedan je URL parametar, a drugi kao query parametar
+
+Get i Delete isto funkcioniraju.
+
+Post - kada su u pitanju primitivni tipovi podataka, primitivne tipove podataka šaljemo kroz URL
+	- kada su kompleksni tipovi podataka šaljemo u query
+
+Update metoda - imat će id i objekt
+
+Autorizacija je dio headera
+
+
+Napravit web api, 5 endpointa i da returnaju
