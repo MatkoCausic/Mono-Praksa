@@ -1,0 +1,12 @@
+Overkill za naš mali projekt, na realnom projektu je vrlo koristno.
+Nema potrebe imati puno layera na malom projektu.
+Metode WebAPI-a rade previđše stvari, krši SRP.
+Dodajemo 2 nova projekta u naš solution: service i repository (to u dva dodatna sloja između WebAPI-a i Db)
+Repository pattern - dobro je imati sloj koji komunicira s bazom podataka
+Ime projekta blablabla.common - interface
+
+Model layer - entiteti u bazi, šaljemo usera u webApi,service i repository da preko njega komuniciramo s Db
+samo ".common" je utility - stvari koji se mogu koristiti između svih layera
+			-ne smije ovisiti o drugim layerima
+
+ime_solutiona.WebApi

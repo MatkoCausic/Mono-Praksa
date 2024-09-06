@@ -1,0 +1,20 @@
+Ja sam Matko Čaušić, 2. sam godina na FERIT-u, studiram računarstvo - programsko inženjerstvo.
+Rođen sam 22.09.2002. u Osijeku.
+Imam psa zvanog Edgar, ima 11 godina, rođen je 2.1.2013. i ima lijepu plavu dlaku.
+U slobodno vrijeme idem u teretanu u Dux Fitness, cijena mjesečne studentske članarine je 30 eura.
+Volim trenirati noge i najdraža vježba mi je zadnji čučanj.
+Čučanj izvodim na način da zadnju seriju čučnjeva radim dropset.
+Uz teretanu, u istoj teretani, idem na Brazilski Jiu-Jitsu (BJJ).
+BJJ je sport koji podsjeća na kombinaciju hrvanja i Juda (što esencijalno i jest), samo je sustav bodovanja drugačiji.
+Na fakultetu sam radio kao demonstrator iz kolegija Programiranje II.
+<<<<<<< HEAD
+Obožavam jesti u McDonald'su, ali draži su mi šeširi. To misli Petar.
+=======
+Obožavam jesti u McDonald'su.
+Riješio conflict kao gigachad!!
+>>>>>>> 7014138fa62ddb70c3b916f67e3e65ab132d48c3
+
+IDE GAS IDE GAS IDE GAS
+BRMMMMMMMMMMMMMMMM
+
+Denz i Matko jedva čekaju ići u McD's.

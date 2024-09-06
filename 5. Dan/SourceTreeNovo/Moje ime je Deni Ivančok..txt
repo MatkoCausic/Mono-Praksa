@@ -1,0 +1,33 @@
+Moje ime je Deni Ivančok. 
+
+Imam 24 godine. 
+
+Ja sam osoba koja voli istraživati nove stvari i postavljati zanimljiva pitanja.
+
+Uvijek me zanimaju različite teme, od svakodnevnih problema do kompleksnih ideja.
+
+Imam razvijen osjećaj za detalje.
+
+Kada sam fokusiran na cilj, trud i posvećenost mi pomažu da ga postignem.
+
+Uživam u razgovorima koji mi pružaju širu perspektivu i izazivaju te na razmišljanje.
+
+Uvijek sam spreman da slušam druge i pronađem dublje značenje u njihovim riječima.
+
+Imam dobar smisao za humor.
+
+
+Ne vjerujem da je svaki dan prilika za napredak.
+
+Vjerujem da je svaki dan prilika za napredak.
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+Small Change - Petar
+=======
+Riješio conflict kao gigachad!!
+>>>>>>> 7014138fa62ddb70c3b916f67e3e65ab132d48c3
+=======
+Riješio conflict kao gigachad!!
+7014138fa62ddb70c3b916f67e3e65ab132d48c3
+>>>>>>> b7891fdf07c7b67d057a8e7d78600f30c4aa8852

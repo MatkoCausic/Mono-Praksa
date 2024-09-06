@@ -1,0 +1,8 @@
+Ime brancheva ide #broj_commita - projekt_koji_radimo
+#1-testing
+
+Klonirati repozitorij,
+otvorit svoj feature branch, svatko napisati jedan txt file o sebi (10 rečenica) nazvati ga ime_prezime,
+drugi feature branch kolegama iz tima mijenjati podatke i dodavati odlomke o sebi i mijenjati postojeće filove.
+Mijenjamo svim kolegama iz grupe.
+Svatko lokalno mora inicijalizirat

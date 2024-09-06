@@ -1,0 +1,26 @@
+Imamo master/main grane, pored main grane imamo develop
+Zamišljamo kao drvo koje ima više grana
+Develop grana služi da svi mogu developati, stavljamo na develop kada mislimo da je kod na mainu dobar.
+
+Postoje grane FEATURE, RELEASE, HOTFIX - razlikuju se je li dolaze iz main-a ili develop.
+Svi developeri otvaraju FEATURE granu kako bi dodali novi feature.
+Ako projekt ima 3 taska, na develop grani se otvaraju 3 feature brancha.
+Feature commitove vidi samo taj developer.
+Finish feature - feature se developa
+Rebase - izgleda kao da jedan od developera počinje s radom tek od finish feature-a (samo nastavlja s radom gdje je stao prošli developer)
+
+Release branch - stavljanje zadnjeg ažuriranja koda s developa na main
+Hotfix - nakon što je program deployan na main, klijent traži promjenu, natrag na develop
+
+Verzija 1.2.3
+1 - 1 major verzija programa - recimo prebacivanje sa starih na nove tehnologije
+2 - 2 releasa, dodani novi feature-i - dodavanje novih funkcionalnosti na već postojeći kod, kada imamo vremena sjesti i popraviti male 		stvari
+3 - 3 hotfixa klinetima u produkciji - recimo u 3 ujutro se ne mogu ljudi uloggirati i treba na briznu popraviti nešto
+
+Nakon hotfixeva, bitno je mergati develop i feature
+
+feature: otvaramo iz D-> zatvaramo u D
+release: otvaramo iz D-> zatvaramo u M
+hotfix: otvaramo iz M-> zatvaramo u M
+
+Sourcetree vizualno prikazuje
